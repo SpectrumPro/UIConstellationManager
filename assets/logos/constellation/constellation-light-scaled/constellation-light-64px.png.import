@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://d20j0urrhe6si"
-path="res://.godot/imported/constellation-light-64px.png-04b9b6d76328abd3d44cab2834574462.ctex"
+path="res://.godot/imported/constellation-light-64px.png-8a3785f20aaf84f6bcfbabbde4dc13d2.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/logos/constellation/constellation-light-scaled/constellation-light-64px.png"
-dest_files=["res://.godot/imported/constellation-light-64px.png-04b9b6d76328abd3d44cab2834574462.ctex"]
+source_file="res://modules/UIConstellationManager/assets/logos/constellation/constellation-light-scaled/constellation-light-64px.png"
+dest_files=["res://.godot/imported/constellation-light-64px.png-8a3785f20aaf84f6bcfbabbde4dc13d2.ctex"]
 
 [params]
 

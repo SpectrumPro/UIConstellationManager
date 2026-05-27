@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dy8vfdd2jdjbu"
-path="res://.godot/imported/constellation-dark-512px.png-f630b87878524ece4567d9e80fce5687.ctex"
+path="res://.godot/imported/constellation-dark-512px.png-87faa1b0af707408dbf0bfcfdc5bfbd5.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/logos/constellation/constellation-dark-scaled/constellation-dark-512px.png"
-dest_files=["res://.godot/imported/constellation-dark-512px.png-f630b87878524ece4567d9e80fce5687.ctex"]
+source_file="res://modules/UIConstellationManager/assets/logos/constellation/constellation-dark-scaled/constellation-dark-512px.png"
+dest_files=["res://.godot/imported/constellation-dark-512px.png-87faa1b0af707408dbf0bfcfdc5bfbd5.ctex"]
 
 [params]
 

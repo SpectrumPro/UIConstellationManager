@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://1pr0vetiomtr"
-path="res://.godot/imported/Graph3.svg-7022f9556b36b59ec509dda8c841a1d3.ctex"
+path="res://.godot/imported/Graph3.svg-f6f563509502392933e64edfe5e8845b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/icons/Graph3.svg"
-dest_files=["res://.godot/imported/Graph3.svg-7022f9556b36b59ec509dda8c841a1d3.ctex"]
+source_file="res://modules/UIConstellationManager/assets/icons/Graph3.svg"
+dest_files=["res://.godot/imported/Graph3.svg-f6f563509502392933e64edfe5e8845b.ctex"]
 
 [params]
 
