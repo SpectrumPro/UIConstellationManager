@@ -13,7 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://bbennjke0ioen" path="res://modules/Vertex/assets/icons/Add.svg" id="11_cyyys"]
 [ext_resource type="Script" uid="uid://cuhjehnbicvx1" path="res://modules/UIConstellationManager/panels/ConfigTab.gd" id="11_d86vn"]
 [ext_resource type="LabelSettings" uid="uid://ci6veq1d2x5c4" path="res://modules/Vertex/assets/styles/DimText.tres" id="11_f3w12"]
-[ext_resource type="PackedScene" uid="uid://kjup3yrjifr5" path="res://modules/Vertex/components/SettingsManagerView/SettingsManagerView.tscn" id="12_dvlfc"]
+[ext_resource type="PackedScene" uid="uid://kjup3yrjifr5" path="res://modules/Vertex/components/SettingsManagerBlockView/SettingsManagerBlockView.tscn" id="12_dvlfc"]
 [ext_resource type="Texture2D" uid="uid://02dx0f5yh4jq" path="res://modules/Vertex/assets/icons/GlobeCancel.svg" id="12_l2fs8"]
 [ext_resource type="Texture2D" uid="uid://deej3q7hutqxn" path="res://modules/Vertex/assets/icons/GlobeConnect.svg" id="13_xjixc"]
 [ext_resource type="Texture2D" uid="uid://f8q8t2pxjmkl" path="res://modules/Vertex/assets/icons/remove_24dp_FFFFFF_FILL0_wght400_GRAD0_opsz24.svg" id="15_qbkai"]
@@ -284,12 +284,12 @@ visible = false
 layout_mode = 2
 size_flags_horizontal = 3
 script = ExtResource("11_d86vn")
-_settings_manager_view = NodePath("ScrollContainer/SettingsManagerView")
+_settings_manager_view = NodePath("ScrollContainer/SettingsManagerBlockView")
 
 [node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer/HBoxContainer/ConfigTab"]
 layout_mode = 2
 
-[node name="SettingsManagerView" parent="VBoxContainer/HBoxContainer/ConfigTab/ScrollContainer" instance=ExtResource("12_dvlfc")]
+[node name="SettingsManagerBlockView" parent="VBoxContainer/HBoxContainer/ConfigTab/ScrollContainer" instance=ExtResource("12_dvlfc")]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3

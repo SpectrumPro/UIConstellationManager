@@ -6,8 +6,8 @@ class_name UIConstellationManagerConfigTab extends PanelContainer
 ## UIConstellationManagerConfigTab
 
 
-## The SettingsManagerView
-@export var _settings_manager_view: SettingsManagerView
+## The SettingsManagerBlockView
+@export var _settings_manager_view: SettingsManagerBlockView
 
 ## The Constellation network instance
 var _constellation: Constellation
