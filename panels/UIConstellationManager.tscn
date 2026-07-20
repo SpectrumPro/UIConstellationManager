@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://dpkn0u6ocbxrj"]
+[gd_scene format=3 uid="uid://dpkn0u6ocbxrj"]
 
 [ext_resource type="Script" uid="uid://dhq837k46p1tr" path="res://modules/UIConstellationManager/panels/UIConstellationManager.gd" id="1_sakur"]
 [ext_resource type="StyleBox" uid="uid://daxhx5qr5qdeu" path="res://modules/Vertex/assets/styles/UIPanelBase.tres" id="1_w5m1w"]
@@ -30,7 +30,7 @@ font_size = 27
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qbkai"]
 
-[node name="UIConstellationManager" type="PanelContainer" node_paths=PackedStringArray("status_label", "power_button", "nodes_tab", "session_tab")]
+[node name="UIConstellationManager" type="PanelContainer" unique_id=1848339097 node_paths=PackedStringArray("status_label", "power_button", "nodes_tab", "session_tab")]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -43,10 +43,10 @@ power_button = NodePath("VBoxContainer/PanelMenuBar/HBoxContainer/ScrollContaine
 nodes_tab = NodePath("VBoxContainer/HBoxContainer/NodesTab")
 session_tab = NodePath("VBoxContainer/HBoxContainer/SessionsTab")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=721983745]
 layout_mode = 2
 
-[node name="PanelMenuBar" parent="VBoxContainer" instance=ExtResource("3_nrpeh")]
+[node name="PanelMenuBar" parent="VBoxContainer" unique_id=1801706582 instance=ExtResource("3_nrpeh")]
 unique_name_in_owner = true
 layout_mode = 2
 
@@ -55,32 +55,32 @@ theme_override_constants/icon_max_width = 24
 text = "ConstellationManager"
 icon = ExtResource("4_dvlfc")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/PanelMenuBar/HBoxContainer/ScrollContainer" index="0"]
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/PanelMenuBar/HBoxContainer/ScrollContainer" index="0" unique_id=6574584]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="PanelContainer2" type="PanelContainer" parent="VBoxContainer/PanelMenuBar/HBoxContainer/ScrollContainer/HBoxContainer"]
+[node name="PanelContainer2" type="PanelContainer" parent="VBoxContainer/PanelMenuBar/HBoxContainer/ScrollContainer/HBoxContainer" unique_id=1061226416]
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/PanelMenuBar/HBoxContainer/ScrollContainer/HBoxContainer/PanelContainer2"]
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/PanelMenuBar/HBoxContainer/ScrollContainer/HBoxContainer/PanelContainer2" unique_id=309854259]
 layout_mode = 2
 
-[node name="NodesTabButton" type="Button" parent="VBoxContainer/PanelMenuBar/HBoxContainer/ScrollContainer/HBoxContainer/PanelContainer2/HBoxContainer"]
+[node name="NodesTabButton" type="Button" parent="VBoxContainer/PanelMenuBar/HBoxContainer/ScrollContainer/HBoxContainer/PanelContainer2/HBoxContainer" unique_id=1189792955]
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 toggle_mode = true
 button_group = SubResource("ButtonGroup_nrpeh")
 text = "Nodes"
 
-[node name="SessionsTabButton" type="Button" parent="VBoxContainer/PanelMenuBar/HBoxContainer/ScrollContainer/HBoxContainer/PanelContainer2/HBoxContainer"]
+[node name="SessionsTabButton" type="Button" parent="VBoxContainer/PanelMenuBar/HBoxContainer/ScrollContainer/HBoxContainer/PanelContainer2/HBoxContainer" unique_id=497870921]
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 toggle_mode = true
 button_group = SubResource("ButtonGroup_nrpeh")
 text = "Sessions"
 
-[node name="ConfigTabButton" type="Button" parent="VBoxContainer/PanelMenuBar/HBoxContainer/ScrollContainer/HBoxContainer/PanelContainer2/HBoxContainer"]
+[node name="ConfigTabButton" type="Button" parent="VBoxContainer/PanelMenuBar/HBoxContainer/ScrollContainer/HBoxContainer/PanelContainer2/HBoxContainer" unique_id=1755112458]
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 toggle_mode = true
@@ -88,21 +88,21 @@ button_pressed = true
 button_group = SubResource("ButtonGroup_nrpeh")
 text = "Config"
 
-[node name="PanelContainer3" type="PanelContainer" parent="VBoxContainer/PanelMenuBar/HBoxContainer/ScrollContainer/HBoxContainer"]
+[node name="PanelContainer3" type="PanelContainer" parent="VBoxContainer/PanelMenuBar/HBoxContainer/ScrollContainer/HBoxContainer" unique_id=839326041]
 layout_mode = 2
 size_flags_horizontal = 10
 
-[node name="PowerButton" type="Button" parent="VBoxContainer/PanelMenuBar/HBoxContainer/ScrollContainer/HBoxContainer/PanelContainer3"]
+[node name="PowerButton" type="Button" parent="VBoxContainer/PanelMenuBar/HBoxContainer/ScrollContainer/HBoxContainer/PanelContainer3" unique_id=814138359]
 layout_mode = 2
 toggle_mode = true
 icon = ExtResource("5_djvka")
 
-[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer/PanelMenuBar/HBoxContainer/ScrollContainer/HBoxContainer"]
+[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer/PanelMenuBar/HBoxContainer/ScrollContainer/HBoxContainer" unique_id=1432449604]
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 3
 
-[node name="StatusLabel" type="Label" parent="VBoxContainer/PanelMenuBar/HBoxContainer/ScrollContainer/HBoxContainer/PanelContainer"]
+[node name="StatusLabel" type="Label" parent="VBoxContainer/PanelMenuBar/HBoxContainer/ScrollContainer/HBoxContainer/PanelContainer" unique_id=611976692]
 custom_minimum_size = Vector2(180, 0)
 layout_mode = 2
 size_flags_vertical = 1
@@ -112,103 +112,104 @@ horizontal_alignment = 1
 vertical_alignment = 1
 text_overrun_behavior = 3
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer" unique_id=1194504152]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="NodesTab" type="PanelContainer" parent="VBoxContainer/HBoxContainer" node_paths=PackedStringArray("_table")]
+[node name="NodesTab" type="PanelContainer" parent="VBoxContainer/HBoxContainer" unique_id=97786684 node_paths=PackedStringArray("_table")]
 visible = false
 layout_mode = 2
 size_flags_horizontal = 3
 script = ExtResource("6_tdpwf")
 _table = NodePath("HBoxContainer/VBoxContainer/Table")
 
-[node name="HBoxContainer" type="HSplitContainer" parent="VBoxContainer/HBoxContainer/NodesTab"]
+[node name="HBoxContainer" type="HSplitContainer" parent="VBoxContainer/HBoxContainer/NodesTab" unique_id=2014841621]
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/HBoxContainer/NodesTab/HBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/HBoxContainer/NodesTab/HBoxContainer" unique_id=782803069]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Table" parent="VBoxContainer/HBoxContainer/NodesTab/HBoxContainer/VBoxContainer" instance=ExtResource("7_d2yxy")]
+[node name="Table" parent="VBoxContainer/HBoxContainer/NodesTab/HBoxContainer/VBoxContainer" unique_id=1458162887 instance=ExtResource("7_d2yxy")]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer/HBoxContainer/NodesTab/HBoxContainer/VBoxContainer"]
+[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer/HBoxContainer/NodesTab/HBoxContainer/VBoxContainer" unique_id=1070920782]
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/HBoxContainer/NodesTab/HBoxContainer/VBoxContainer/PanelContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/HBoxContainer/NodesTab/HBoxContainer/VBoxContainer/PanelContainer" unique_id=1946312096]
 layout_mode = 2
 
-[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer/HBoxContainer/NodesTab/HBoxContainer/VBoxContainer/PanelContainer/HBoxContainer"]
+[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer/HBoxContainer/NodesTab/HBoxContainer/VBoxContainer/PanelContainer/HBoxContainer" unique_id=312622960]
 layout_mode = 2
 size_flags_horizontal = 10
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/HBoxContainer/NodesTab/HBoxContainer/VBoxContainer/PanelContainer/HBoxContainer/PanelContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/HBoxContainer/NodesTab/HBoxContainer/VBoxContainer/PanelContainer/HBoxContainer/PanelContainer" unique_id=1105945666]
 layout_mode = 2
 
-[node name="Reload" type="Button" parent="VBoxContainer/HBoxContainer/NodesTab/HBoxContainer/VBoxContainer/PanelContainer/HBoxContainer/PanelContainer/HBoxContainer"]
+[node name="Reload" type="Button" parent="VBoxContainer/HBoxContainer/NodesTab/HBoxContainer/VBoxContainer/PanelContainer/HBoxContainer/PanelContainer/HBoxContainer" unique_id=898163330]
 layout_mode = 2
 icon = ExtResource("9_tkm7n")
 
-[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer/HBoxContainer/NodesTab/HBoxContainer"]
+[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer/HBoxContainer/NodesTab/HBoxContainer" unique_id=1583280008]
 visible = false
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/HBoxContainer/NodesTab/HBoxContainer/PanelContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/HBoxContainer/NodesTab/HBoxContainer/PanelContainer" unique_id=840792122]
 layout_mode = 2
 
-[node name="LineEdit" type="LineEdit" parent="VBoxContainer/HBoxContainer/NodesTab/HBoxContainer/PanelContainer/VBoxContainer"]
+[node name="LineEdit" type="LineEdit" parent="VBoxContainer/HBoxContainer/NodesTab/HBoxContainer/PanelContainer/VBoxContainer" unique_id=1999345608]
 layout_mode = 2
 placeholder_text = "Name"
 
-[node name="SessionsTab" type="PanelContainer" parent="VBoxContainer/HBoxContainer"]
+[node name="SessionsTab" type="PanelContainer" parent="VBoxContainer/HBoxContainer" unique_id=1621802529]
 visible = false
 layout_mode = 2
 size_flags_horizontal = 3
 script = ExtResource("8_d2yxy")
 
-[node name="HSplitContainer" type="HSplitContainer" parent="VBoxContainer/HBoxContainer/SessionsTab"]
+[node name="HSplitContainer" type="HSplitContainer" parent="VBoxContainer/HBoxContainer/SessionsTab" unique_id=1621005104]
 layout_mode = 2
+split_offsets = PackedInt32Array(205)
 split_offset = 205
 
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/HBoxContainer/SessionsTab/HSplitContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/HBoxContainer/SessionsTab/HSplitContainer" unique_id=1564290416]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="SessionTable" parent="VBoxContainer/HBoxContainer/SessionsTab/HSplitContainer/VBoxContainer" instance=ExtResource("7_d2yxy")]
+[node name="SessionTable" parent="VBoxContainer/HBoxContainer/SessionsTab/HSplitContainer/VBoxContainer" unique_id=1990685002 instance=ExtResource("7_d2yxy")]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer/HBoxContainer/SessionsTab/HSplitContainer/VBoxContainer"]
+[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer/HBoxContainer/SessionsTab/HSplitContainer/VBoxContainer" unique_id=729118391]
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/HBoxContainer/SessionsTab/HSplitContainer/VBoxContainer/PanelContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/HBoxContainer/SessionsTab/HSplitContainer/VBoxContainer/PanelContainer" unique_id=623871764]
 layout_mode = 2
 
-[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer/HBoxContainer/SessionsTab/HSplitContainer/VBoxContainer/PanelContainer/HBoxContainer"]
+[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer/HBoxContainer/SessionsTab/HSplitContainer/VBoxContainer/PanelContainer/HBoxContainer" unique_id=437251291]
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/HBoxContainer/SessionsTab/HSplitContainer/VBoxContainer/PanelContainer/HBoxContainer/PanelContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/HBoxContainer/SessionsTab/HSplitContainer/VBoxContainer/PanelContainer/HBoxContainer/PanelContainer" unique_id=1802372707]
 layout_mode = 2
 
-[node name="CreateSessionButton" type="Button" parent="VBoxContainer/HBoxContainer/SessionsTab/HSplitContainer/VBoxContainer/PanelContainer/HBoxContainer/PanelContainer/HBoxContainer"]
+[node name="CreateSessionButton" type="Button" parent="VBoxContainer/HBoxContainer/SessionsTab/HSplitContainer/VBoxContainer/PanelContainer/HBoxContainer/PanelContainer/HBoxContainer" unique_id=30950720]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(139, 0)
 layout_mode = 2
 text = "Create Session"
 icon = ExtResource("11_cyyys")
 
-[node name="JoinSessionButton" type="Button" parent="VBoxContainer/HBoxContainer/SessionsTab/HSplitContainer/VBoxContainer/PanelContainer/HBoxContainer/PanelContainer/HBoxContainer"]
+[node name="JoinSessionButton" type="Button" parent="VBoxContainer/HBoxContainer/SessionsTab/HSplitContainer/VBoxContainer/PanelContainer/HBoxContainer/PanelContainer/HBoxContainer" unique_id=1264875722]
 unique_name_in_owner = true
 layout_mode = 2
 disabled = true
 text = "Join Session"
 icon = ExtResource("13_xjixc")
 
-[node name="LeaveSessionButton" type="Button" parent="VBoxContainer/HBoxContainer/SessionsTab/HSplitContainer/VBoxContainer/PanelContainer/HBoxContainer/PanelContainer/HBoxContainer"]
+[node name="LeaveSessionButton" type="Button" parent="VBoxContainer/HBoxContainer/SessionsTab/HSplitContainer/VBoxContainer/PanelContainer/HBoxContainer/PanelContainer/HBoxContainer" unique_id=148507736]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(139, 0)
 layout_mode = 2
@@ -216,34 +217,34 @@ disabled = true
 text = "Leave Session"
 icon = ExtResource("12_l2fs8")
 
-[node name="PanelContainer3" type="PanelContainer" parent="VBoxContainer/HBoxContainer/SessionsTab/HSplitContainer/VBoxContainer/PanelContainer/HBoxContainer"]
+[node name="PanelContainer3" type="PanelContainer" parent="VBoxContainer/HBoxContainer/SessionsTab/HSplitContainer/VBoxContainer/PanelContainer/HBoxContainer" unique_id=578883833]
 layout_mode = 2
 size_flags_horizontal = 10
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/HBoxContainer/SessionsTab/HSplitContainer/VBoxContainer/PanelContainer/HBoxContainer/PanelContainer3"]
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/HBoxContainer/SessionsTab/HSplitContainer/VBoxContainer/PanelContainer/HBoxContainer/PanelContainer3" unique_id=652852085]
 layout_mode = 2
 
-[node name="Reload" type="Button" parent="VBoxContainer/HBoxContainer/SessionsTab/HSplitContainer/VBoxContainer/PanelContainer/HBoxContainer/PanelContainer3/HBoxContainer"]
+[node name="Reload" type="Button" parent="VBoxContainer/HBoxContainer/SessionsTab/HSplitContainer/VBoxContainer/PanelContainer/HBoxContainer/PanelContainer3/HBoxContainer" unique_id=1135142252]
 layout_mode = 2
 icon = ExtResource("9_tkm7n")
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="VBoxContainer/HBoxContainer/SessionsTab/HSplitContainer"]
+[node name="VBoxContainer2" type="VBoxContainer" parent="VBoxContainer/HBoxContainer/SessionsTab/HSplitContainer" unique_id=934707845]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer/HBoxContainer/SessionsTab/HSplitContainer/VBoxContainer2"]
+[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer/HBoxContainer/SessionsTab/HSplitContainer/VBoxContainer2" unique_id=1973439580]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="MembersTable" parent="VBoxContainer/HBoxContainer/SessionsTab/HSplitContainer/VBoxContainer2/PanelContainer" instance=ExtResource("7_d2yxy")]
+[node name="MembersTable" parent="VBoxContainer/HBoxContainer/SessionsTab/HSplitContainer/VBoxContainer2/PanelContainer" unique_id=1135755849 instance=ExtResource("7_d2yxy")]
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_styles/panel = SubResource("StyleBoxEmpty_qbkai")
 
-[node name="NoSelectedSessionLabel" type="Label" parent="VBoxContainer/HBoxContainer/SessionsTab/HSplitContainer/VBoxContainer2/PanelContainer"]
+[node name="NoSelectedSessionLabel" type="Label" parent="VBoxContainer/HBoxContainer/SessionsTab/HSplitContainer/VBoxContainer2/PanelContainer" unique_id=534016955]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Select a Session to view members"
@@ -251,27 +252,27 @@ label_settings = ExtResource("11_f3w12")
 horizontal_alignment = 1
 autowrap_mode = 2
 
-[node name="PanelContainer2" type="PanelContainer" parent="VBoxContainer/HBoxContainer/SessionsTab/HSplitContainer/VBoxContainer2"]
+[node name="PanelContainer2" type="PanelContainer" parent="VBoxContainer/HBoxContainer/SessionsTab/HSplitContainer/VBoxContainer2" unique_id=1748639863]
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/HBoxContainer/SessionsTab/HSplitContainer/VBoxContainer2/PanelContainer2"]
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/HBoxContainer/SessionsTab/HSplitContainer/VBoxContainer2/PanelContainer2" unique_id=489928479]
 layout_mode = 2
 
-[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer/HBoxContainer/SessionsTab/HSplitContainer/VBoxContainer2/PanelContainer2/HBoxContainer"]
+[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer/HBoxContainer/SessionsTab/HSplitContainer/VBoxContainer2/PanelContainer2/HBoxContainer" unique_id=169787968]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/HBoxContainer/SessionsTab/HSplitContainer/VBoxContainer2/PanelContainer2/HBoxContainer/PanelContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/HBoxContainer/SessionsTab/HSplitContainer/VBoxContainer2/PanelContainer2/HBoxContainer/PanelContainer" unique_id=1687424075]
 layout_mode = 2
 
-[node name="InviteNode" type="Button" parent="VBoxContainer/HBoxContainer/SessionsTab/HSplitContainer/VBoxContainer2/PanelContainer2/HBoxContainer/PanelContainer/HBoxContainer"]
+[node name="InviteNode" type="Button" parent="VBoxContainer/HBoxContainer/SessionsTab/HSplitContainer/VBoxContainer2/PanelContainer2/HBoxContainer/PanelContainer/HBoxContainer" unique_id=632245692]
 custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Invite Node"
 icon = ExtResource("11_cyyys")
 
-[node name="RemoveNode" type="Button" parent="VBoxContainer/HBoxContainer/SessionsTab/HSplitContainer/VBoxContainer2/PanelContainer2/HBoxContainer/PanelContainer/HBoxContainer"]
+[node name="RemoveNode" type="Button" parent="VBoxContainer/HBoxContainer/SessionsTab/HSplitContainer/VBoxContainer2/PanelContainer2/HBoxContainer/PanelContainer/HBoxContainer" unique_id=1198563458]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
@@ -280,13 +281,13 @@ disabled = true
 text = "Remove Node"
 icon = ExtResource("15_qbkai")
 
-[node name="ConfigTab" type="PanelContainer" parent="VBoxContainer/HBoxContainer" node_paths=PackedStringArray("_settings_manager_view")]
+[node name="ConfigTab" type="PanelContainer" parent="VBoxContainer/HBoxContainer" unique_id=564632579 node_paths=PackedStringArray("_settings_manager_view")]
 layout_mode = 2
 size_flags_horizontal = 3
 script = ExtResource("11_d86vn")
 _settings_manager_view = NodePath("SettingsManagerBlockView")
 
-[node name="SettingsManagerBlockView" parent="VBoxContainer/HBoxContainer/ConfigTab" instance=ExtResource("12_dvlfc")]
+[node name="SettingsManagerBlockView" parent="VBoxContainer/HBoxContainer/ConfigTab" unique_id=1085832344 instance=ExtResource("12_dvlfc")]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
