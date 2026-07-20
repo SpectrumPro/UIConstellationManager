@@ -50,12 +50,12 @@ layout_mode = 2
 unique_name_in_owner = true
 layout_mode = 2
 
-[node name="ComponentButton" parent="VBoxContainer/PanelMenuBar/HBoxContainer" index="0"]
+[node name="ComponentButton" parent="VBoxContainer/PanelMenuBar/HBoxContainer" parent_id_path=PackedInt32Array(1801706582, 1200457394) index="0" unique_id=495491944]
 theme_override_constants/icon_max_width = 24
 text = "ConstellationManager"
 icon = ExtResource("4_dvlfc")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/PanelMenuBar/HBoxContainer/ScrollContainer" index="0" unique_id=6574584]
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/PanelMenuBar/HBoxContainer/ScrollContainer" parent_id_path=PackedInt32Array(1801706582, 1637369951) index="0" unique_id=6574584]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
