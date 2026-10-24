@@ -60,4 +60,4 @@ func reset() -> void:
 
 ## Called when the Reload Button is pressed
 func _on_reload_pressed() -> void:
-	_constellation._send_discovery()
+	_constellation.send_discovery()
