@@ -162,12 +162,16 @@ func _remove_session_member(p_node: ConstellationNode) -> void:
 func _on_session_joined(p_session: ConstellationSession) -> void:
 	_leave_session_button.set_disabled(false)
 	_create_session_button.set_disabled(true)
+	_join_session_button.set_disabled(true)
 
 
 ## Called when the localNode leaves a session
 func _on_session_left() -> void:
 	_leave_session_button.set_disabled(true)
 	_create_session_button.set_disabled(false)
+	
+	if _selected_session:
+		_join_session_button.set_disabled(false)
 
 
 ## Called when a node joines a session
