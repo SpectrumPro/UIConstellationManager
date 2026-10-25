@@ -265,9 +265,11 @@ size_flags_horizontal = 3
 layout_mode = 2
 
 [node name="InviteNode" type="Button" parent="VBoxContainer/HBoxContainer/SessionsTab/HSplitContainer/VBoxContainer2/PanelContainer2/HBoxContainer/PanelContainer/HBoxContainer" unique_id=632245692]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
 size_flags_horizontal = 3
+disabled = true
 text = "Invite Node"
 icon = ExtResource("11_cyyys")
 
