@@ -24,6 +24,9 @@ class_name UIConstellationManagerSessionsTab extends PanelContainer
 ## The JoinSession Button
 @onready var _join_session_button: Button = %JoinSessionButton
 
+## The InviteNode Button
+@onready var _invite_node_button: Button = %InviteNode
+
 ## The RemoveNode Button
 @onready var _remove_node_button: Button = %RemoveNode
 
@@ -162,12 +165,16 @@ func _remove_session_member(p_node: ConstellationNode) -> void:
 func _on_session_joined(p_session: ConstellationSession) -> void:
 	_leave_session_button.set_disabled(false)
 	_create_session_button.set_disabled(true)
+	_join_session_button.set_disabled(true)
 
 
 ## Called when the localNode leaves a session
 func _on_session_left() -> void:
 	_leave_session_button.set_disabled(true)
 	_create_session_button.set_disabled(false)
+	
+	if _selected_session:
+		_join_session_button.set_disabled(false)
 
 
 ## Called when a node joines a session
@@ -203,10 +210,16 @@ func _on_join_session_button_pressed() -> void:
 func _on_table_selection_changed() -> void:
 	var selected: ConstellationSession = _session_rows.right(_session_table.get_selected_row())
 	
-	if is_instance_valid(selected) and selected != _constellation.get_local_node().get_session():
-		_join_session_button.set_disabled(false)
+	if is_instance_valid(selected):
+		if selected != _constellation.get_local_node().get_session():
+			_join_session_button.set_disabled(false)
+		
+		_invite_node_button.set_disabled(false)
 	else:
 		_join_session_button.set_disabled(true)
+		_invite_node_button.set_disabled(true)
+		_remove_node_button.set_disabled(true)
+		
 	
 	select_session(selected)
 
@@ -218,7 +231,7 @@ func _on_members_table_selection_changed() -> void:
 
 ## Called when the Reload Button is pressed
 func _on_reload_pressed() -> void:
-	_constellation._send_session_discovery()
+	_constellation.send_discovery()
 
 
 ## Called when the InviteNode button is pressed
