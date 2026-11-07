@@ -1,0 +1,45 @@
+[gd_scene format=3 uid="uid://yhufxwt6h7vk"]
+
+[ext_resource type="Script" uid="uid://jwlrnaii5r5d" path="res://modules/UIConstellationManager/panels/UIConstellationManager/UIConstellationNodes/UIConstellationNode.gd" id="1_kd24c"]
+[ext_resource type="PackedScene" uid="uid://bf3cbsyaotnnq" path="res://modules/Vertex/components/Table/Table.tscn" id="2_hb3p7"]
+[ext_resource type="Texture2D" uid="uid://ddo26yd8qpx5r" path="res://modules/Vertex/assets/icons/Refresh.svg" id="3_wpcx1"]
+
+[node name="UIConstellationNodes" type="PanelContainer" unique_id=1875899784 node_paths=PackedStringArray("_table")]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+script = ExtResource("1_kd24c")
+_table = NodePath("HBoxContainer/VBoxContainer/Table")
+
+[node name="HBoxContainer" type="HSplitContainer" parent="." unique_id=1846212467]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer" unique_id=1489915947]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Table" parent="HBoxContainer/VBoxContainer" unique_id=55312734 instance=ExtResource("2_hb3p7")]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="PanelContainer" type="PanelContainer" parent="HBoxContainer/VBoxContainer" unique_id=793821139]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/VBoxContainer/PanelContainer" unique_id=2005027304]
+layout_mode = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="HBoxContainer/VBoxContainer/PanelContainer/HBoxContainer" unique_id=881299354]
+layout_mode = 2
+size_flags_horizontal = 10
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/VBoxContainer/PanelContainer/HBoxContainer/PanelContainer" unique_id=120495493]
+layout_mode = 2
+
+[node name="Reload" type="Button" parent="HBoxContainer/VBoxContainer/PanelContainer/HBoxContainer/PanelContainer/HBoxContainer" unique_id=871836802]
+layout_mode = 2
+icon = ExtResource("3_wpcx1")
+
+[connection signal="pressed" from="HBoxContainer/VBoxContainer/PanelContainer/HBoxContainer/PanelContainer/HBoxContainer/Reload" to="." method="_on_reload_pressed"]

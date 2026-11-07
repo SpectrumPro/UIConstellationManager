@@ -2,8 +2,8 @@
 # This file is part of the Spectrum Lighting Controller, licensed under the GPL v3.0 or later.
 # See the LICENSE file for details.
 
-class_name UIConstellationManagerSessionsTab extends PanelContainer
-## UIConstellationManagerSessionsTab
+class_name UIConstellationSessions extends UIBase
+## UIConstellationManagerSessions
 
 
 ## The Table Node to show all Constellation sessions
@@ -35,7 +35,7 @@ class_name UIConstellationManagerSessionsTab extends PanelContainer
 enum SessionColumns {NAME, MEMBER_COUNT, MASTER}
 
 ## Enum for MembersColumns
-enum MemberColumns {PRIORITY, NAME}
+enum MemberColumns {PRIORITY, NAME, CONNECTION_STATUS}
 
 
 ## Config for each column
@@ -49,6 +49,7 @@ var _session_column_config: Dictionary[int, Dictionary] = {
 var _member_column_config: Dictionary[int, Dictionary] = {
 	MemberColumns.PRIORITY: {"type": Data.Type.INT, "expand": false},
 	MemberColumns.NAME: {"type": Data.Type.STRING, "expand": true},
+	MemberColumns.CONNECTION_STATUS: {"type": Data.Type.ENUM, "expand": false}
 }
 
 ## The Constellation network instance
@@ -63,20 +64,33 @@ var _member_rows: RefMap = RefMap.new()
 ## The current selected session in the members table
 var _selected_session: ConstellationSession
 
+## Current selected members in a session
+var _selected_members: Array[ConstellationNode]
+
+## SignalGroup for Constellation
+var _constellation_connections: SignalGroup = SignalGroup.new([
+	_on_session_created
+])
+
+## SignalGroup for the local node
+var _local_node_connections: SignalGroup = SignalGroup.new([
+	_on_local_session_changed
+]).set_prefix("_on_local_")
+
 ## SignalGroup for each ConstellationSession
-var _session_connections: SignalGroup = SignalGroup.new([], {
-	"delete_requested": remove_session,
-	"node_joined": _on_session_node_joined,
-	"node_left": _on_session_node_left,
-})
+var _session_connections: SignalGroup = SignalGroup.new([
+	_on_session_delete_requested,
+	_on_session_node_joined,
+	_on_session_node_left,
+]).set_prefix("_on_session_")
 
 
-## Ready
+## ready
 func _ready() -> void:
 	_constellation = Network.get_active_handler_by_name("Constellation")
 	
-	_constellation.get_local_node().session_joined.connect(_on_session_joined)
-	_constellation.get_local_node().session_left.connect(_on_session_left)
+	_constellation_connections.connect_object(_constellation)
+	_local_node_connections.connect_object(_constellation.get_local_node())
 	
 	for column_name: String in SessionColumns:
 		_session_table.add_column(column_name.capitalize(), _session_column_config[SessionColumns[column_name]].type)
@@ -87,33 +101,44 @@ func _ready() -> void:
 	
 	_members_table.set_multi_edit_mode(Table.MultiEditMode.MATCH_COLUMN_TYPE)
 	_members_table.set_column_sort(_members_table.get_column(MemberColumns.PRIORITY), Table.SortDirection.ASCENDING)
+	
+	for session: ConstellationSession in _constellation.get_all_sessions():
+		_add_session(session)
 
 
-## Adds a ConstellationSession to the table
-func add_session(p_session: ConstellationSession) -> void:
+## Adds the given ConstellationSession to the list
+func _add_session(p_session: ConstellationSession) -> bool:
+	if _session_rows.has_left(p_session):
+		return false
+	
+	var settings: SettingsManager = p_session.get_settings()
 	_session_connections.connect_object(p_session)
+	
 	_session_rows.map(p_session, _session_table.add_row({
-		SessionColumns.NAME: p_session.get_settings().get_entry("Name"),
-		SessionColumns.MEMBER_COUNT: p_session.get_settings().get_entry("MemberCount"),
-		SessionColumns.MASTER: p_session.get_settings().get_entry("Master"),
+		SessionColumns.NAME: 			settings.get_entry("Name"),
+		SessionColumns.MEMBER_COUNT: 	settings.get_entry("MemberCount"),
+		SessionColumns.MASTER: 			settings.get_entry("Master"),
 	}))
+	
+	return true
 
 
-## Removes a session from the table
-func remove_session(p_session: ConstellationSession) -> void:
-	var row: Table.Row = _session_rows.left(p_session)
+## Removes the given ConstellationSession from the list
+func _remove_session(p_session: ConstellationSession) -> bool:
+	if not _session_rows.has_left(p_session):
+		return false
 	
-	if not is_instance_valid(row):
-		return
-	
-	_session_table.remove_row(row)
+	_session_table.remove_row(_session_rows.left(p_session))
 	_session_rows.erase_left(p_session)
 	_session_connections.disconnect_object(p_session)
+	
+	return true
 
 
-## Selects the given session
-func select_session(p_session: ConstellationSession) -> void:
+## Selects the given ConstellationSession
+func _select_session(p_session: ConstellationSession) -> void:
 	_selected_session = null
+	_selected_members.clear()
 	
 	_member_rows.clear()
 	_members_table.clear()
@@ -121,9 +146,11 @@ func select_session(p_session: ConstellationSession) -> void:
 	_members_table.hide()
 	_no_selected_session_label.show()
 	
+	queue(_update_buttons)
+	
 	if not _session_rows.has_left(p_session):
 		return
-	
+
 	_selected_session = p_session
 	_members_table.show()
 	_no_selected_session_label.hide()
@@ -132,52 +159,69 @@ func select_session(p_session: ConstellationSession) -> void:
 		_add_session_member(node)
 
 
-## Resets the UI, removing all nodes from the table
-func reset() -> void:
-	for session: ConstellationSession in _session_rows.get_left():
-		_session_connections.disconnect_object(session, true)
-	
-	_session_rows.clear()
-	_session_table.clear()
-
-
 ## Adds a node to the members table
-func _add_session_member(p_node: ConstellationNode) -> void:
-	if not is_instance_valid(_selected_session):
-		return
+func _add_session_member(p_node: ConstellationNode) -> bool:
+	if _member_rows.has_left(p_node):
+		return false
+	
+	var settings: SettingsManager = p_node.get_settings()
 	
 	_member_rows.map(p_node, _members_table.add_row({
-		MemberColumns.PRIORITY: p_node.get_settings().get_entry("Priority"),
-		MemberColumns.NAME: p_node.get_settings().get_entry("Name"),
+		MemberColumns.PRIORITY: settings.get_entry("Priority"),
+		MemberColumns.NAME: 	settings.get_entry("Name"),
+		MemberColumns.CONNECTION_STATUS: 	settings.get_entry("ConnectionState")
 	}))
+	
+	return true
 
 
 ## Removes a node from the members table
-func _remove_session_member(p_node: ConstellationNode) -> void:
-	if not is_instance_valid(_selected_session) or not _member_rows.has_left(p_node):
-		return
+func _remove_session_member(p_node: ConstellationNode) -> bool:
+	if not _member_rows.has_left(p_node):
+		return false
 	
 	_members_table.remove_row(_member_rows.left(p_node))
 	_member_rows.erase_left(p_node)
-
-
-## Called when the localNode joins a session
-func _on_session_joined(p_session: ConstellationSession) -> void:
-	_leave_session_button.set_disabled(false)
-	_create_session_button.set_disabled(true)
-	_join_session_button.set_disabled(true)
-
-
-## Called when the localNode leaves a session
-func _on_session_left() -> void:
-	_leave_session_button.set_disabled(true)
-	_create_session_button.set_disabled(false)
 	
-	if _selected_session:
-		_join_session_button.set_disabled(false)
+	return true
 
 
-## Called when a node joines a session
+## Updates buttons disabled status
+func _update_buttons() -> void:
+	_create_session_button.set_disabled(
+		is_instance_valid(_constellation.get_local_node().get_session())
+	)
+	_join_session_button.set_disabled(
+		not is_instance_valid(_selected_session) or _selected_session.is_active_session()
+	)
+	_leave_session_button.set_disabled(
+		not is_instance_valid(_constellation.get_local_node().get_session())
+	)
+	
+	_invite_node_button.set_disabled(
+		not is_instance_valid(_selected_session)
+	)
+	_remove_node_button.set_disabled(
+		not _selected_members
+	)
+
+
+## Called when a session is created on the network
+func _on_session_created(p_session: ConstellationSession) -> void:
+	_add_session(p_session)
+
+
+## Called when the local node's session is changed
+func _on_local_session_changed(_p_session: ConstellationSession) -> void:
+	queue(_update_buttons)
+
+
+## Called when a ConstellationSession requests to be deleted
+func _on_session_delete_requested(p_session: ConstellationSession) -> void:
+	_remove_session(p_session)
+
+
+## Called when a nodes joins a session
 func _on_session_node_joined(p_node: ConstellationNode) -> void:
 	if p_node.get_session() == _selected_session:
 		_add_session_member(p_node)
@@ -209,24 +253,18 @@ func _on_join_session_button_pressed() -> void:
 ## Called when the selection is changed
 func _on_table_selection_changed() -> void:
 	var selected: ConstellationSession = _session_rows.right(_session_table.get_selected_row())
-	
-	if is_instance_valid(selected):
-		if selected != _constellation.get_local_node().get_session():
-			_join_session_button.set_disabled(false)
-		
-		_invite_node_button.set_disabled(false)
-	else:
-		_join_session_button.set_disabled(true)
-		_invite_node_button.set_disabled(true)
-		_remove_node_button.set_disabled(true)
-		
-	
-	select_session(selected)
+	_select_session(selected)
 
 
 ## Called when the members table selection is changed
 func _on_members_table_selection_changed() -> void:
-	_remove_node_button.set_disabled(not _members_table.is_any_selected())
+	var selected: Array = _members_table.get_selected_rows()
+	_selected_members.clear()
+	
+	for row: Table.Row in selected:
+		_selected_members.append(_member_rows.right(row))
+	
+	queue(_update_buttons)
 
 
 ## Called when the Reload Button is pressed
@@ -245,11 +283,5 @@ func _on_invite_node_pressed() -> void:
 
 ## Called when the RemoveNode button is pressed
 func _on_remove_node_pressed() -> void:
-	var selected: Array = _members_table.get_selected_rows()
-	
-	if not selected:
-		return
-	
-	for row: Table.Row in selected:
-		var member: ConstellationNode = _member_rows.right(row)
-		member.leave_session()
+	for node: ConstellationNode in _selected_members:
+		node.leave_session()
