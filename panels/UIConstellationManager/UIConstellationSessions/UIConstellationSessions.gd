@@ -149,8 +149,12 @@ func _select_session(p_session: ConstellationSession) -> void:
 	queue(_update_buttons)
 	
 	if not _session_rows.has_left(p_session):
+		_session_table.deselect_all()
 		return
-
+	
+	if not _session_table.get_selected_row():
+		_session_rows.left(p_session).select()
+	
 	_selected_session = p_session
 	_members_table.show()
 	_no_selected_session_label.hide()
@@ -236,7 +240,7 @@ func _on_session_node_left(p_node: ConstellationNode) -> void:
 ## Called when the create session button is pressed
 func _on_create_session_button_pressed() -> void:
 	Popups.show_data_input(self, Data.Type.STRING, "NewSession", "Session Name").then(func (p_name: String):
-		_constellation.create_session(p_name)
+		_select_session(_constellation.create_session(p_name))
 	)
 
 
