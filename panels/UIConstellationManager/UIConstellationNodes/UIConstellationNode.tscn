@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://jwlrnaii5r5d" path="res://modules/UIConstellationManager/panels/UIConstellationManager/UIConstellationNodes/UIConstellationNode.gd" id="1_kd24c"]
 [ext_resource type="PackedScene" uid="uid://bf3cbsyaotnnq" path="res://modules/Vertex/components/Table/Table.tscn" id="2_hb3p7"]
+[ext_resource type="Texture2D" uid="uid://c1lo424rvnhc3" path="res://modules/UIConstellationManager/assets/icons/DeleteSweep.svg" id="3_cubj6"]
 [ext_resource type="Texture2D" uid="uid://ddo26yd8qpx5r" path="res://modules/Vertex/assets/icons/Refresh.svg" id="3_wpcx1"]
 
 [node name="UIConstellationNodes" type="PanelContainer" unique_id=1875899784 node_paths=PackedStringArray("_table")]
@@ -31,6 +32,17 @@ layout_mode = 2
 [node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/VBoxContainer/PanelContainer" unique_id=2005027304]
 layout_mode = 2
 
+[node name="PanelContainer2" type="PanelContainer" parent="HBoxContainer/VBoxContainer/PanelContainer/HBoxContainer" unique_id=471464649]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/VBoxContainer/PanelContainer/HBoxContainer/PanelContainer2" unique_id=210885844]
+layout_mode = 2
+
+[node name="RemoveOffline" type="Button" parent="HBoxContainer/VBoxContainer/PanelContainer/HBoxContainer/PanelContainer2/HBoxContainer" unique_id=1873863521]
+layout_mode = 2
+text = "Remove Offline"
+icon = ExtResource("3_cubj6")
+
 [node name="PanelContainer" type="PanelContainer" parent="HBoxContainer/VBoxContainer/PanelContainer/HBoxContainer" unique_id=881299354]
 layout_mode = 2
 size_flags_horizontal = 10
@@ -42,4 +54,5 @@ layout_mode = 2
 layout_mode = 2
 icon = ExtResource("3_wpcx1")
 
+[connection signal="pressed" from="HBoxContainer/VBoxContainer/PanelContainer/HBoxContainer/PanelContainer2/HBoxContainer/RemoveOffline" to="." method="_on_remove_offline_pressed"]
 [connection signal="pressed" from="HBoxContainer/VBoxContainer/PanelContainer/HBoxContainer/PanelContainer/HBoxContainer/Reload" to="." method="_on_reload_pressed"]

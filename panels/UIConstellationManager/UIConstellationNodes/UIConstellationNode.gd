@@ -98,3 +98,8 @@ func _on_node_found(p_node: ConstellationNode) -> void:
 ## Called when a ConstellationNode requests to be deleted
 func _on_node_delete_requested(p_node: ConstellationNode) -> void:
 	_remove_node(p_node)
+
+
+## Called when the RemoveOffline button is pressed
+func _on_remove_offline_pressed() -> void:
+	_constellation.remove_offline_nodes()
