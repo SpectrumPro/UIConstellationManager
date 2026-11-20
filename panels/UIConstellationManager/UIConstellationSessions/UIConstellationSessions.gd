@@ -32,7 +32,7 @@ class_name UIConstellationSessions extends UIBase
 
 
 ## Enum for SessionColumns
-enum SessionColumns {NAME, MEMBER_COUNT, MASTER}
+enum SessionColumns {NAME, MEMBER_COUNT, MASTER, SESSION_STATUS}
 
 ## Enum for MembersColumns
 enum MemberColumns {PRIORITY, NAME, CONNECTION_STATUS}
@@ -43,6 +43,7 @@ var _session_column_config: Dictionary[int, Dictionary] = {
 	SessionColumns.NAME: {"type": Data.Type.STRING},
 	SessionColumns.MEMBER_COUNT: {"type": Data.Type.INT},
 	SessionColumns.MASTER: {"type": Data.Type.OBJECT},
+	SessionColumns.SESSION_STATUS: {"type": Data.Type.ENUM},
 }
 
 ## Config for each column
@@ -118,6 +119,7 @@ func _add_session(p_session: ConstellationSession) -> bool:
 		SessionColumns.NAME: 			settings.get_entry("Name"),
 		SessionColumns.MEMBER_COUNT: 	settings.get_entry("MemberCount"),
 		SessionColumns.MASTER: 			settings.get_entry("Master"),
+		SessionColumns.SESSION_STATUS:	settings.get_entry("SessionStatus")
 	}))
 	
 	return true
